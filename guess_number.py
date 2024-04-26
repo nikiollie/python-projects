@@ -17,13 +17,22 @@ while randNum != guess:
     
     #guess will be string (input returns string), need to cast it 
     #  to int for comparison
-    guess = int(guess)
+    try:
+        guess = int(guess)
+    except:
+        print("Not an integer!")
+        continue
     
+    #check for outlier
+    if guess > 100 or guess < 1:
+        print("Guess is out of range. Please guess a number between 1 and 100")
+        continue
+
     #compare user guess to random number
     if randNum > guess:
         print("Higher")
     elif randNum < guess:
         print("Lower")
     else:
-        print("you guessed it")
+        print("You guessed it!")
     
