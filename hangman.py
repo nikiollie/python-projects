@@ -6,6 +6,7 @@ def find(s, ch):
 
 word = random.choice(word_list)
 guess_list = []
+wrong_guess_list = []
 word_dict = {}
 wrong_guesses = 0
 correct_guesses = 0
@@ -19,6 +20,13 @@ for i in range(num_letters):
 print("\n")
 
 while wrong_guesses < 11 and correct_guesses != num_letters:
+    if len(wrong_guess_list) >0:
+        print("Wrong guesses so far: ")
+    for i, ltr in enumerate(wrong_guess_list):
+        print(ltr, end="")
+
+    print("\n")
+
     guess = input("What is your guess: ")
 
     if guess in guess_list:
@@ -38,6 +46,7 @@ while wrong_guesses < 11 and correct_guesses != num_letters:
         else:
             print("Not in the word :(")
             wrong_guesses += 1
+            wrong_guess_list.append(guess)
             print("You have " + str(11-wrong_guesses) + " guesses left.")
         
         #print pattern
@@ -49,8 +58,9 @@ while wrong_guesses < 11 and correct_guesses != num_letters:
 
         print("\n")
 
-    if correct_guesses == num_letters:
-        print("You guessed the word " + word + " correctly!")
-    else:
-        print("Better luck next time!")
+if correct_guesses == num_letters:
+    print("You guessed the word " + word + " correctly!")
+else:
+    print("The word was " + word)
+    print("Better luck next time!")
 
